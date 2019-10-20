@@ -1,0 +1,156 @@
+<!--pages/shoppingDetail/shoppingDetail.wxml-->
+
+<view class='swiper'>
+  <swiper interval="{{interval}}" duration="{{duration}}" vertical="{{vertical}}" indicator-dots="indicatordots" autoplay="{{autoplay}}" indicator-active-color="{{color}}" indicator-color="{{showColor}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class='xqbox'>急救补水 镇静舒缓 丰富精华 亲肤服帖</view>
+<!-- 轮播end -->
+<view class='cpjsBox1'>
+  <view class='cpjsBox'>
+    <view class='cpjsLeftBox'>
+      <text>全球直邮</text> SHISEIDO资生堂 FWB世界之初妆前隔离乳霜 35g
+      <view class='boxprice'>￥1299
+        <text class='titlQc'>￥1299</text>
+        <text class='xsTitle'>销量:7000</text>
+      </view>
+    </view>
+    <view class='cpjsRightBox'>
+      <image src='/img/rbtb.png'></image>
+      <view>日本</view>
+      <view>编号:12345</view>
+    </view>
+  </view>
+  <view class='mxdataBox'>
+
+    <view wx:for="{{countDownList}}" wx:key="countDownList">还剩
+      <text class='textBoxData'>{{item.hou}}</text>:
+      <text class='textBoxData'>{{item.min}}</text>:
+      <text class='textBoxData'>{{item.sec}}</text>结束</view>
+  </view>
+</view>
+
+<view class="weui-cells weui-cells_in-small-appmsg user-menu">
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd weui-cell_primary">
+      <view>【全球直邮】全球本地直采，10大海外仓直邮</view>
+    </view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </view>
+
+  <view class="weui-cell weui-cell_access" style='background:#f4f4f4'>
+    <view class="weui-cell__bd weui-cell_primary">
+      <view>
+        <image src='/img/msxq.png' style='width:20rpx;height:20rpx'></image>
+        <text decode="emsp">&nbsp;优货&nbsp;&nbsp; </text>
+        <image src='/img/msxq.png' style='width:20rpx;height:20rpx'>
+        </image>
+        <text decode="emsp">&nbsp;正品&nbsp;&nbsp; </text>
+        <image src='/img/msxq.png' style='width:20rpx;height:20rpx'></image>
+        <text decode="emsp">&nbsp;便捷&nbsp;&nbsp; </text>
+        <image src='/img/msxq.png' style='width:20rpx;height:20rpx'></image>
+        <text decode="emsp">&nbsp;极速&nbsp;&nbsp; </text>
+        <image src='/img/msxq.png' style='width:20rpx;height:20rpx'></image>
+        <text decode="emsp">&nbsp;省钱&nbsp;&nbsp; </text>
+        <image src='/img/msxq.png' style='width:20rpx;height:20rpx'></image>
+        <text decode="emsp">&nbsp;安心&nbsp;&nbsp; </text>
+      </view>
+    </view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </view>
+
+
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd weui-cell_primary">
+      <view class='manjBox'>
+        <text>满件折</text>此商品正在参与任意
+        <text style='color:#E4383A;background:#Fff'> 2件8折</text>活动</view>
+    </view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd weui-cell_primary">
+      <view>【8英寸】3+32 WiFi版 黑色</view>
+    </view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </view>
+  <view style='height:20rpx;background:#f4f4f4;'></view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd weui-cell_primary">
+      <view class='manjBox1'>到货时间
+        <text>海外直邮商品，预计7-14天送达</text>
+      </view>
+    </view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </view>
+  <view style='height:20rpx;background:#f4f4f4;'></view>
+  <view class="weui-cell weui-cell_access">
+    <view class="weui-cell__bd weui-cell_primary">
+      <view class='manjBox1'>商品评价(318)</view>
+    </view>
+    <view style='color:#999'>查看全部</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </view>
+  <view class='plBox'>
+    <view class='plLeftBOX'>
+      <view>
+        <image src='/img/1.png'></image>
+        <text>用戶</text>
+
+      </view>
+      <view class='dataTime'>2018.04.17</view>
+    </view>
+    <view class='pjTile'>
+      很好用，很满意。无味，安全，用这个牌子很久了。挺放心的，强烈推荐。几个房间都在用。
+
+    </view>
+  </view>
+  <view class='plBox'>
+    <view class='plLeftBOX'>
+      <view>
+        <image src='/img/1.png'></image>
+        <text>用戶</text>
+
+      </view>
+      <view class='dataTime'>2018.04.17</view>
+    </view>
+    <view class='pjTile'>
+      很好用，很满意。无味，安全，用这个牌子很久了。挺放心的，强烈推荐。几个房间都在用。
+
+    </view>
+  </view>
+  <view style='height:20rpx;background:#f4f4f4;'></view>
+
+  <view class='twxqbox'>图文详情</view>
+  <view class='imageBox'>
+    <image src='http://win2.qbt8.com/design/cpt.png'></image>
+  </view>
+</view>
+
+<view class='f_box'>
+
+
+  <view class="btnQX" bindtap='tosc'>
+    <view>
+      <image src='/img/scdj.png' hidden='{{scShow}}'></image>
+      <image src='/img/scdj_s.png' hidden='{{!scShow}}'></image>
+
+    </view>
+    <view style='margin-top:-70rpx'>
+      <text style='color:#999;font-size:22rpx;'>收藏</text>
+
+    </view>
+
+  </view>
+  <view class="btnsc" style='background:#8871D8'>
+    加入购物车
+  </view>
+  <view class="btnsc">
+    立即购买
+  </view>
+</view>

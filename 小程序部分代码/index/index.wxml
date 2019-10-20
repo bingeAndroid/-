@@ -1,0 +1,427 @@
+<import src="/pages/template/template.wxml" />
+
+<view class='searchicon-mian'>
+  <view class='searchicon' bindtap='toSeatcher'>
+
+    <view class='search-main'>
+      <view class='search-img'>
+        <image src='../../img/search.png'></image>
+      </view>
+      <view class='searchicon-font'>请输入搜索关键字</view>
+    </view>
+
+  </view>
+
+
+  <view class='searchicon-right' bindtap='toMessage'>
+    <image wx:if="{{!messages_state}}" src='../../img/mesages.png'></image>
+    <image wx:else src='../../img/mesageslect.png'></image>
+
+  </view>
+</view>
+
+<view class='swiper'>
+  <swiper interval="{{interval}}" duration="{{duration}}" vertical="{{vertical}}" indicator-dots="indicatordots" autoplay="{{autoplay}}" indicator-active-color="{{color}}" indicator-color="{{showColor}}">
+    <block wx:for="{{imgUrls}}" wx:key="index">
+      <!-- <navigator   url='/pages/shoppingDetailFl/shoppingDetailFl?gid={{item.ad_link}}' data-gid="{{item.ad_link}}"   hover-class='none'></navigator> -->
+
+      <swiper-item bindtap="toshoppingDetailfl" data-gid="{{item.ad_link}}" data-type="{{item.type}}">
+        <image src="{{item.ad_pic}}" class="slide-image" mode='aspectFill' />
+        <!-- <image  src="https://dpic.tiankong.com/hc/ku/QJ6109185257.jpg?x-oss-process=style/670ws" class="slide-image" /> -->
+
+      </swiper-item>
+
+
+    </block>
+  </swiper>
+</view>
+<!-- 公告 -->
+<view class='notice-main' wx:if="{{model_state.xtgg==1 &&article.length>0 }}">
+  <view class='notice-left'>
+    <image src='../../img/Notice.png'></image>
+  </view>
+
+
+  <swiper class="item-ask-swiper" vertical="true" autoplay="true" interval="{{2000}}" circular="true">
+    <swiper-item class="item-ask-text" data-id="{{ item.id }}" catchtouchmove="false" wx:key="index" wx:for="{{article}}" data-id="{{ item.article_id }}">
+      <view class='notice-right-flsa'>
+        <view class='notice-right' style='flex:1'>
+          <view class='newest-text' catchtap='toGgDetail' data-id="{{ item.article_id }}">
+            <view class='newest'>最新</view>
+            <view class='' style="font-size:22rpx;margin-left:10rpx">{{article[index].article_title}}</view>
+          </view>
+          <view class='newest-text' catchtap='toGgDetail' data-id="{{ item.article_id }}" wx:if="{{index<article.length-1}}">
+            <view class='newest'>最新</view>
+            <view class='' style="font-size:22rpx;margin-left:10rpx">{{article[index+1].article_title}}</view>
+          </view>
+        </view>
+
+
+      </view>
+
+
+    </swiper-item>
+  </swiper>
+
+   <!-- <swiper class="item-ask-swiper" vertical="true" autoplay="true" interval="{{2000}}" circular="true">
+    <swiper-item class="item-ask-text" data-id="{{ item.id }}" catchtouchmove="false" wx:key="index" wx:for="{{seconds_killList}}" data-id="{{ item.article_id }}">
+      <view class='notice-right-flsa'>
+        <view class='notice-right' style='flex:1'>
+          <view class='newest-text' catchtap='toGgDetail' data-id="{{ item.article_id }}">
+            <view class='newest'>最新</view>
+            <view class='' style="font-size:22rpx;margin-left:10rpx">{{seconds_killList[index].goods_name}}</view>
+          </view>
+          <view class='newest-text' catchtap='toGgDetail' data-id="{{ item.article_id }}" wx:if="{{index<article.length-1}}">
+            <view class='newest'>最新</view>
+            <view class='' style="font-size:22rpx;margin-left:10rpx">{{seconds_killList[index+1].goods_name}}</view>
+          </view>
+        </view>
+
+
+      </view>
+
+
+    </swiper-item>
+  </swiper>
+ -->
+
+</view>
+<!-- iocn -->
+<view class="top-icon">
+  <navigator hover-class="none" wx:for="{{nav_list}}" url="{{item.type==1?'/pages/xsqg/xsqg':item.type==2?'/pages/ptsx/ptsx':item.type==3?'/pages/flshoppingList/flshoppingList?cid='+item.class_id+'&name='+item.nav_title:item.type==4?'/pages/ztxq/ztxq?gid='+item.class_id:item.type==5?'/pages/yhqShoppingList/yhqShoppingList?is_zk=1':'/pages/indexFl/indexFl?id='+item.class_id+'&name='+item.nav_title}}"
+    class="icon-item" wx:key="index">
+    <image mode='aspectFit' src="{{item.nav_pic}} " />
+    <view>{{item.nav_title}}</view>
+  </navigator>
+</view>
+
+<view class='Division'></view>
+<!-- 限时秒杀 -->
+<view wx:if="{{model_state.xsms==1}}">
+
+  <view class='limitedTime'>
+    <view class='sellWell'>
+      <image class='sellWell-img' src='../../img/home1.png'></image>
+      <view class='limitedTime-time'>
+
+        <view class='limitedTime-title'>
+          <image src='../../img/imited.png'></image>
+        </view>
+        <view class='limitedTime-title-s'>
+          <view class='left baClos'>{{day||00}}天{{h||00}}</view>
+          <view class='left dian'>:</view>
+          <view class='left baClos'>{{m||00}}</view>
+          <view class='left dian'>:</view>
+          <view class='left baClos'>{{s||00}}</view>
+        </view>
+        <!-- <view class='viewMore iconfont right-icon'>查看更多</view> -->
+      </view>
+      <view class='viewMore iconfont right-icon ommodities-ring' bindtap='toXSQG'>查看更多</view>
+    </view>
+
+    <!-- 商品列表 -->
+
+
+  </view>
+
+
+  <scroll-view class="follow-car-scroll " scroll-x="true " scroll-with-animation="{{true}} ">
+
+    <view class='commodity'>
+
+      <view class="list-scroll-item " wx:for="{{seconds_killList}}" bindtap='toShoppingDetail' data-gid="{{item.goods_id}}" wx:key="index">
+        <view class='commodity-link'>
+          <view class='commodity-mian'>
+            <view class='commodity-bg'>
+              <view class='commodity-b-img'>
+                <image mode="aspectFill " src='{{item.goods_pic}}'></image>
+              </view>
+
+              <view class='je'>{{item.discount}}折</view>
+            </view>
+
+            <!-- titex -->
+            <view class='commodity-text'>{{item.goods_name}}</view>
+            <!-- <view class='commodity-text'>{{item.goods_description}}</view> -->
+            <view class='price-naw' style="position:relative">
+              <progress stroke-width='15' activeColor="#E4383A" backgroundColor="#fccacb" percent='{{(item.pbg_shop/item.pbg_stock)*100}}' border-radius="50">
+                <view class="yqds">已抢{{(item.pbg_shop/item.pbg_stock)*100}}%</view>
+              </progress>
+            </view>
+            <view class='price-naw' wx:if="{{item.pbg_shop!=item.pbg_stock}}">
+              <text class='pr'>¥</text>
+              <text class='price'>{{item.pbg_price}}</text>
+              <text class='pr-c'>¥</text>
+              <text class='price-fracture'>{{item.goods_price}}</text>
+
+            </view>
+            <view class='price-naw' wx:else>
+              <text class='pr'>¥</text>
+              <text class='price'>{{item.goods_price}}</text>
+
+            </view>
+          </view>
+
+        </view>
+
+
+      </view>
+
+    </view>
+
+  </scroll-view>
+
+  <view class='Division'></view>
+</view>
+<!-- 热销商品 -->
+<view wx:if="{{model_state.rx==1}}">
+
+  <view class='sellWell'>
+    <view class='sellWell'>
+      <image class='sellWell-img' src='../../img/home2.png'></image>
+      <!-- <image class='ommodities-img' src='../../img/ommodities.png'></image> -->
+      <navigator url='/pages/hotShoppingList/hotShoppingList' hover-class='none'>
+
+        <view class='viewMore iconfont right-icon ommodities-ring'>查看更多</view>
+      </navigator>
+    </view>
+
+  </view>
+
+  <view>
+    <view class='popular'>
+
+      <view class='popular-new' wx:for="{{hot_goods_list2}}" wx:key="index">
+        <navigator url='/pages/shoppingDetailFl/shoppingDetailFl?gid={{item.goods_id}}' hover-class='none'>
+
+          <view class='popular-new-bg'>
+            <view class='popular-b-img'>
+              <image src='{{item.goods_pic}}' mode=''></image>
+              <view class='shang-imgss'>
+                <image src='../../img/new.png'></image>
+                <view class='textNum1'>{{index+1}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='popular-tltle'>{{item.goods_name}}</view>
+          <view class='popular-text'>{{item.goods_description}}</view>
+          <view class='price-naw' wx:if="{{item.state==1}}">
+            <text class='pr'>¥</text>
+            <text class='price'>{{item.pbg_price}}</text>
+            <text class='pr-c'>¥</text>
+            <text class='price-fracture'>{{item.goods_price}}</text>
+
+          </view>
+          <view class='price-naw' wx:else>
+            <text class='pr'>¥</text>
+            <text class='price'>{{item.goods_price}}</text>
+
+          </view>
+        </navigator>
+
+      </view>
+
+
+
+    </view>
+
+  </view>
+
+  <scroll-view class="follow-car-scroll " scroll-x="true " scroll-with-animation="{{true}} ">
+
+    <view class='commodity'>
+
+      <navigator class="list-scroll-item " wx:for="{{hot_goods_lists}}" url='/pages/shoppingDetailFl/shoppingDetailFl?gid={{item.goods_id}}' wx:key="index">
+        <view class='commodity-link'>
+          <view class='commodity-mian'>
+            <view class='commodity-bg'>
+              <view class='commodity-b-img'>
+                <image mode="aspectFill " src='{{item.goods_pic}}'></image>
+                <view class='shang-img'>
+                  <image src='../../img/new.png'></image>
+                  <view class='textNum'>{{index+3}}</view>
+                </view>
+              </view>
+
+
+            </view>
+
+            <!-- titex -->
+            <view class='commodity-text'>{{item.goods_name}}</view>
+            <!-- <view class='popular-text'>{{item.goods_description}}</view> -->
+
+            <view class='price-naw' wx:if="{{item.state==1}}">
+              <text class='pr'>¥</text>
+              <text class='price'>{{item.pbg_price}}</text>
+              <text class='pr-c'>¥</text>
+              <text class='price-fracture'>{{item.goods_price}}</text>
+
+            </view>
+            <view class='price-naw' wx:else>
+              <text class='pr'>¥</text>
+              <text class='price'>{{item.goods_price}}</text>
+
+            </view>
+
+          </view>
+
+        </view>
+
+      </navigator>
+
+
+    </view>
+
+
+
+
+
+
+
+  </scroll-view>
+
+  <view class='Division'></view>
+</view>
+
+<!-- 广告模块 -->
+<view wx:if="{{model_state.yxhd==1}}">
+
+  <view class='sellWell'>
+    <view class='sellWell'>
+      <image class='sellWell-img' src='../../img/home3.png'></image>
+      <!-- <image class='ommodities-img' src='../../img/yxhd.jpg'></image> -->
+      <navigator url='/pages/yxhd/yxhd' hover-class='none'>
+        <view class='viewMore iconfont right-icon ommodities-ring'>查看更多</view>
+      </navigator>
+
+    </view>
+  </view>
+  <view class='Advertisement'>
+    <view class='Advertisement-new'>
+      <view class='Advertisement-new-img' wx:for="{{yxhd2}}" bindtap='toyxhdShopping' data-fid='{{item.fd_id}}' wx:key="index">
+        <image src='{{item.fd_pic}}'></image>
+      </view>
+
+    </view>
+    <!-- 
+    <view class='Advertisement-new'>
+      <view class='Advertisement-new-img' wx:for="{{yxhds}}" bindtap='toyxhdShopping' data-fid='{{item.fd_id}}' wx:key="index" >
+        <image src='{{item.fd_pic}}' mode='aspectFit'></image>
+      </view>
+
+    </view> -->
+    <view class='Advertisement-new' style="justify-content: start;padding: 20rpx 10rpx 0rpx 10rpx;">
+      <view class='Advertisement-new-img-tow' wx:for="{{yxhds}}" bindtap='toyxhdShopping' data-fid='{{item.fd_id}}' wx:key="index" style="">
+        <image src='{{item.fd_pic}}'></image>
+      </view>
+
+    </view>
+
+  </view>
+  <view class='Division'></view>
+</view>
+
+<!-- 母婴用品 -->
+<block wx:for="{{good_class}}" wx:if="{{model_state.fllm==1}}" wx:key="index">
+
+  <view class='limitedTime' wx:if="{{item.good_class_nav.length>0||item.list.length>0}}">
+    <view class='sellWell' style="height:77rpx">
+      <image class='sellWell-img' src="../../img/home{{index+4}}.png"></image>
+      <view class='titlefd color{{index}}'>{{item.class_name}}</view>
+      <!-- <image class='ommodities-img' src='../../img/yxhd.jpg'></image> -->
+      <navigator url='/pages/ztxq/ztxq?gid={{item.class_id}}' hover-class='none'>
+
+        <view class='viewMore iconfont right-icon ommodities-ring' style='color:#666;top:14rpx;'>查看更多</view>
+      </navigator>
+
+    </view>
+
+    <view wx:if="{{item.good_class_nav.length>0}}" style="height:370rpx;">
+      <!-- <navigator url='/pages/indexFl/indexFl?id={{item.class_id}}&name={{item.class_name}}' hover-class='none'> </navigator> -->
+      <image class='homeDaily-img' src='{{item.good_class_nav[0].ad_pic}}' bindtap="toshoppingDetailfl" data-gid="{{item.good_class_nav[0].ad_link}}" data-type="{{item.good_class_nav[0].type}}"></image>
+
+
+    </view>
+    <!-- 列表 -->
+    <view class='popular'>
+      <block wx:for="{{item.list}}" wx:for-item="item2" wx:if="{{item.list.length>0}}" wx:key="index">
+
+        <view class='popular-new-nai' bindtap='toShoppingDetail' data-gid="{{item2.goods_id}}">
+          <view class='popular-new-bg-nai'>
+            <view class='popular-b-img flImageCs' style='height:229rpx'>
+              <image src='{{item2.goods_pic}}'></image>
+
+            </view>
+          </view>
+          <view class='popular-nia'>{{item2.goods_name}}</view>
+          <!-- <view class='popular-text'>{{item.goods_description}}</view> -->
+
+          <view class='price-naw' wx:if="{{item.state==1}}">
+            <text class='pr'>¥</text>
+            <text class='price'>{{item2.pbg_price}}</text>
+            <text class='pr-c'>¥</text>
+            <text class='price-fracture'>{{item2.goods_price}}</text>
+
+          </view>
+          <view class='price-naw' wx:else>
+            <text class='pr'>¥</text>
+            <text class='price'>{{item2.goods_price}}</text>
+
+          </view>
+        </view>
+
+      </block>
+
+
+    </view>
+
+
+  </view>
+  <view class='Division' wx:if="{{item.good_class_nav.length>0&&item.list.length>0}}"></view>
+
+</block>
+
+
+
+
+
+<!-- 特别推荐 -->
+<view class='limitedTime tbtj' wx:if="{{model_state.tbtj==1}}">
+  <view class='sellWell'>
+    <image class='sellWell-img' src='../../img/index10.png'></image>
+    <!-- <image class='ommodities-img' src='../../img/ommodities.png'></image> -->
+    <navigator url='/pages/tjShoppingList/tjShoppingList?cid=1' hover-class='none'>
+      <view class='viewMore iconfont right-icon ommodities-ring'>查看更多</view>
+    </navigator>
+  </view>
+  <view class='Division1'></view>
+  <view class='width730'>
+    <view class="hall-item " wx:for="{{tj_goods_list}}" bindtap='toShoppingDetail' data-gid="{{item.goods_id}}" wx:key="index">
+      <image src='{{item.goods_pic}}' mode="aspectFit"></image>
+      <view class='title-item'>{{item.goods_name}}</view>
+      <view class='price-naw' wx:if="{{item.state==1}}">
+        <text class='pr'>¥</text>
+        <text class='price'>{{item.pbg_price}}</text>
+        <text class='pr-c'>¥</text>
+        <text class='price-fracture'>{{item.goods_price}}</text>
+
+      </view>
+      <view class='price-naw' wx:else>
+        <text class='pr'>¥</text>
+        <text class='price'>{{item.goods_price}}</text>
+
+      </view>
+
+    </view>
+
+
+  </view>
+</view>
+
+<view class='topBox'>
+  <image src='/img/top.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
+</view>
+
+<template is="loadPulse" wx:if="{{loadFlag=='loading'}}" />
+<template is="fresh" wx:if="{{loadFlag=='fail'}}" />
+<template is="nodata" wx:if="{{loadFlag=='nodata'}}" />

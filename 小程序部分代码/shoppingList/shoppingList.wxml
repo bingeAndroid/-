@@ -1,0 +1,166 @@
+<!--pages/shoppingList/shoppingList.wxml-->
+<import src="/pages/template/template.wxml" />
+
+
+
+<view class='a05'>
+  <view class='b00' bindtap='toggle_sort_comprehensive'>
+    综合
+    <!-- <image wx:if="{{sort_comprehensive==1}}" src='{{imageurl}}15.png' style='width:11rpx;height:15rpx;'></image>
+    <image wx:elif="{{sort_comprehensive==2}}" src='{{imageurl}}14.png' style='width:11rpx;height:15rpx;'></image>
+    <image wx:else="{{sort_comprehensive==3}}" src='{{imageurl}}16.png' style='width:11rpx;height:15rpx;'></image> -->
+  </view>
+  <view class='b00' bindtap='toggle_sort_new'>
+    新品
+    <image wx:if="{{sort_new==1}}" src='{{imageurl}}15.png' style='width:11rpx;height:15rpx;'></image>
+    <image wx:elif="{{sort_new==2}}" src='{{imageurl}}14.png' style='width:11rpx;height:15rpx;'></image>
+    <image wx:else="{{sort_new==3}}" src='{{imageurl}}16.png' style='width:11rpx;height:15rpx;'></image>
+  </view>
+  <view class='b00' bindtap='toggle_sort_sold'>
+    销量
+    <image wx:if="{{sort_sold==1}}" src='{{imageurl}}15.png' style='width:11rpx;height:15rpx;'></image>
+    <image wx:elif="{{sort_sold==2}}" src='{{imageurl}}14.png' style='width:11rpx;height:15rpx;'></image>
+    <image wx:else="{{sort_sold==3}}" src='{{imageurl}}16.png' style='width:11rpx;height:15rpx;'></image>
+  </view>
+  <view class='b00' bindtap='toggle_model_price'>
+    价格
+
+
+  </view>
+  <view class='b00' bindtap='toggle_model_box02'>
+    品牌
+
+  </view>
+  <view class='b00' bindtap='toggle_model_box01'>
+    国家
+
+  </view>
+</view>
+<!-- 价格 -->
+<view id="model_price" hidden='{{hide_model_price}}'>
+
+  <view class='b01'>
+    最低价格
+    <view style='width:19rpx;'></view>
+    <input type='number' value='{{minPrice}}' bindinput='getInputKey' data-name="minPrice"></input>
+    <view style='width:19rpx;'></view>—
+    <view style='width:19rpx;'></view>最高价格
+    <view style='width:19rpx;'></view>
+    <input type='number' value='{{maxPice}}' bindinput='getInputKey' data-name="maxPice"></input>
+  </view>
+  <view class='b02'>
+    <view class='c01'  catchtap="reset_price1">重置</view>
+    <view class='c02' bindtap='comfirm_price'>确定</view>
+  </view>
+  <view class="dialog__mask"  bindtap="reset_price" />
+</view>
+<view id="model_price1" hidden='{{hide_model_sleect_country1}}'  bindtap="reset_price">
+
+  <view class='b01'>
+    <view class="weui-cells weui-cells_in-small-appmsg user-menu" style='overflow:auto;height:450rpx'>
+      <view class="weui-cell weui-cell_access" catchtap="sleect_country1" wx:for="{{BrandList}}" wx:key="{{item.brand_name}}" data-index="{{index}}" data-brid='{{item.brand_id}}'>
+
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>{{item.brand_name}}</view>
+        </view>
+
+        <view class="checkbox_group">
+          <view class="checkbox_icon" catchtap="sleect_country1" data-index="{{index}}" wx:if="{{activeIndex1!=index}}" data-id="{{item.brand_id}}"></view>
+          <view class="checkbox_icon" catchtap="sleect_country1" wx:if="{{activeIndex1==index}}" data-index="{{index}}" data-id="{{item.brand_id}}">
+            <image src='/img/20.png' style='width:30rpx;height:23rpx'></image>
+          </view>
+        </view>
+        <view class="weui-cell__ft "></view>
+      </view>
+    </view>
+  </view>
+
+  <view class='b02'>
+    <view class='c01'  catchtap="reset_price1">重置</view>
+    <view class='c02' bindtap='comfirm_price2'>确定</view>
+  </view>
+</view>
+<!-- 选择国家 -->
+<view id="model_price1" hidden='{{hide_model_sleect_country}}'  bindtap="reset_price">
+
+  <view class='b01'>
+    <view class="weui-cells weui-cells_in-small-appmsg user-menu" style='overflow:auto;height:450rpx'>
+      <view class="weui-cell weui-cell_access" catchtap="sleect_country" wx:for="{{CountriesList}}" wx:key="{{item.countrie_name}}" data-index="{{index}}" data-countid='{{item.countrie_id}}'>
+
+        <view class="weui-cell__bd weui-cell_primary">
+          <view>{{item.countrie_name}}</view>
+        </view>
+
+        <view class="checkbox_group">
+          <view class="checkbox_icon" catchtap="sleect_country" data-index="{{index}}" wx:if="{{activeIndex2!=index}}" data-id="{{item.countrie_id}}"></view>
+          <view class="checkbox_icon" catchtap="sleect_country" wx:if="{{activeIndex2==index}}" data-index="{{index}}" data-id="{{item.countrie_id}}">
+            <image src='/img/20.png' style='width:30rpx;height:23rpx'></image>
+          </view>
+        </view>
+        <view class="weui-cell__ft "></view>
+      </view>
+    </view>
+  </view>
+
+  <view class='b02'>
+    <view class='c01'  catchtap="reset_price1">重置</view>
+    <view class='c02' bindtap='comfirm_price1'>确定</view>
+  </view>
+</view>
+
+<!-- <view class='rysp' wx:if="{{info.type==2}}">以下商品
+  <text> 满{{info.fdr_quata}}件{{info.fdr_deduct}}折</text>
+</view>
+<view class='rysp' wx:else>以下商品
+  <text> 满{{info.fdr_quata}}元减{{info.fdr_deduct}}元</text>
+</view> -->
+<view class='rysp' >
+  <text> {{info.fd_title}}</text>
+</view>
+
+
+
+<view class='width730'>
+  <view class="hall-item" wx:for="{{lists}}" bindtap='toShoppingDetail' data-gid="{{item.goods_id}}">
+    <!-- <image src='{{item.goods_pic}}'></image>
+    <view class='shang-imgss'>满{{info.fdr_quata}}件{{info.fdr_deduct}}折</view> -->
+    <view class='popular-new-bg'>
+      <view class='popular-b-img' >
+        <image src='{{item.goods_pic}}'  mode='scaleToFill'></image>
+        <view class='shang-imgss' wx:if="{{info.type==2}}">满{{info.fdr_quata}}件{{info.fdr_deduct}}折</view>
+        <view class='shang-imgss' wx:else>满{{info.fdr_quata}}元减{{info.fdr_deduct}}元</view>
+
+      </view>
+    </view>
+
+    <view class='title-item'>{{item.goods_name}}</view>
+
+    <view class='mjBox' wx:if="{{info.type==2}}">满件折</view>
+    <view class='mjBox' wx:else>满元减</view>
+
+
+    <view class='price-naw' wx:if="{{item.state}}">
+      <text class='pr'>¥</text>
+      <text class='price'>{{item.pbg_price}}</text>
+      <text class='pr-c'>¥</text>
+      <text class='price-fracture'>{{item.goods_price}}</text>
+
+    </view>
+    <view class='price-naw' wx:else>
+      <text class='pr'>¥</text>
+      <text class='price'>{{item.goods_price}}</text>
+
+
+    </view>
+
+  </view>
+
+
+</view>
+<view class='topBox'>
+  <image src='/img/top.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
+</view>
+<template is="loadPulse" wx:if="{{loadFlag=='loading'}}" />
+<template is="fresh" wx:if="{{loadFlag=='fail'}}" />
+<template is="nodata" wx:if="{{loadFlag=='nodata'}}" />
+<template is="done" wx:if="{{loadFlag=='done'}}" />
